@@ -99,6 +99,17 @@ The project is structured using Clean Architecture with the following layers:
 
 **Login Example**:
 ```bash
+curl -X POST "http://localhost:5000/api/auth/token" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "grantType": "password",
+    "clientId": "web",
+    "clientSecret": "webpass1",
+    "username": "your_username",
+    "password": "your_password"
+  }'
+```
+```bash
 curl -X POST "https://localhost:7000/api/auth/token" \
   -H "Content-Type: application/json" \
   -d '{
@@ -109,13 +120,15 @@ curl -X POST "https://localhost:7000/api/auth/token" \
     "password": "your_password"
   }'
 ```
-
 **Get Users Example** (with authentication):
+```bash
+curl -X GET "http://localhost:5000/api/user/GetUsers" \
+  -H "Authorization: Bearer YOUR_JWT_TOKEN"
+```
 ```bash
 curl -X GET "https://localhost:7000/api/user/GetUsers" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
-
 ### 3. Using Postman
 
 1. Import the API endpoints
