@@ -1,4 +1,3 @@
-@ -1,2 +1,199 @@
 # TestLetShare
 Technical Challenge – Authentication Module in .NET 8
 
@@ -70,14 +69,14 @@ The project is structured using Clean Architecture with the following layers:
    ```
 
 5. **Access the application**:
-   - API: `https://localhost:7001` or `http://localhost:5001`
-   - Swagger UI: `https://localhost:7001/swagger` or `http://localhost:5001/swagger`
+   - API: `https://localhost:7000` or `http://localhost:5000`
+   - Swagger UI: `https://localhost:7000/swagger` or `http://localhost:5000/swagger`
 
 ## API Endpoints
 
 ### Authentication
 
-- **POST** `/api/auth/login`
+- **POST** `/api/auth/token`
   - Authenticates a user and returns JWT tokens
   - Request body: `SignInCommand` with username and password
   - Returns: JWT access token and refresh token
@@ -100,9 +99,12 @@ The project is structured using Clean Architecture with the following layers:
 
 **Login Example**:
 ```bash
-curl -X POST "https://localhost:7001/api/auth/login" \
+curl -X POST "https://localhost:7000/api/auth/token" \
   -H "Content-Type: application/json" \
   -d '{
+    "grantType": "password",
+    "clientId": "web",
+    "clientSecret": "webpass1",
     "username": "your_username",
     "password": "your_password"
   }'
@@ -110,14 +112,14 @@ curl -X POST "https://localhost:7001/api/auth/login" \
 
 **Get Users Example** (with authentication):
 ```bash
-curl -X GET "https://localhost:7001/api/user/GetUsers" \
+curl -X GET "https://localhost:7000/api/user/GetUsers" \
   -H "Authorization: Bearer YOUR_JWT_TOKEN"
 ```
 
 ### 3. Using Postman
 
 1. Import the API endpoints
-2. For authentication, send a POST request to `/api/auth/login`
+2. For authentication, send a POST request to `/api/auth/token`
 3. Copy the JWT token from the response
 4. Add the token to the Authorization header for subsequent requests
 

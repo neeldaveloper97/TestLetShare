@@ -7,11 +7,11 @@ namespace TestLetshare.Application.Features.Auth.Validators
     {
         public SignInValidator()
         {
-            RuleFor(x => x.Email)
+            RuleFor(x => x.username)
                 .NotEmpty().WithMessage("Email is required.")
                 .EmailAddress().WithMessage("Invalid email format.");
 
-            RuleFor(x => x.Password)
+            RuleFor(x => x.password)
                 .NotEmpty().WithMessage("Password is required.")
                 .MinimumLength(6).WithMessage("Password must be at least 6 characters long.");
         }

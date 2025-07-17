@@ -15,13 +15,13 @@ namespace TestLetshare.API.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] SignInCommand request)
+        [HttpPost("token")]
+        public async Task<IActionResult> Token([FromBody] SignInCommand request)
         {
             try
             {
                 var result = await _authService.SignInAsync(request);
-                return result.Success ? Ok(result) : Unauthorized(result);
+                return result.Success ? Ok(result.Data) : Unauthorized(result);
             }
             catch (UnauthorizedAccessException)
             {

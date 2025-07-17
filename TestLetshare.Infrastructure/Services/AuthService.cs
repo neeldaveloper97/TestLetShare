@@ -25,8 +25,8 @@ namespace TestLetshare.Infrastructure.Services
 
         public async Task<ApiResponse<TokenResponse>> SignInAsync(SignInCommand command)
         {
-            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == command.Email);
-            if (user == null || !BCrypt.Net.BCrypt.Verify(command.Password, user.Password))
+            var user = await _db.Users.FirstOrDefaultAsync(u => u.Email == command.username);
+            if (user == null || !BCrypt.Net.BCrypt.Verify(command.password, user.Password))
             {
                 return new ApiResponse<TokenResponse>
                 {
