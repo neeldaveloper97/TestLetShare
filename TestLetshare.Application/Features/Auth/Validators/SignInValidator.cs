@@ -8,8 +8,8 @@ namespace TestLetshare.Application.Features.Auth.Validators
         public SignInValidator()
         {
             RuleFor(x => x.username)
-                .NotEmpty().WithMessage("Email is required.")
-                .EmailAddress().WithMessage("Invalid email format.");
+                .NotEmpty().WithMessage("Username is required.")
+                .EmailAddress().WithMessage("Invalid username format.");
 
             RuleFor(x => x.password)
                 .NotEmpty().WithMessage("Password is required.")
